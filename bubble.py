@@ -16,8 +16,8 @@ def bubble(vetor):
   number_iteration = 0
   for t in range(len(vetor)):
     for i in range ((len(vetor)-1)):
-        number_iteration = number_iteration + 1
         if vetor[i]>vetor[i+1]:
+            number_iteration = number_iteration + 1
             vetor[i], vetor[i + 1] = vetor[i + 1], vetor[i]
   return number_iteration
 
