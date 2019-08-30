@@ -2,18 +2,6 @@ import random
 import timeit
 import matplotlib.pyplot as plt
 
-
-def insertion_sort(b):
-    for i in range(1, len(b)):
-        up = b[i]
-        j = i - 1
-        while j >= 0 and b[j] > up:
-            b[j + 1] = b[j]
-            j -= 1
-        b[j + 1] = up
-    return b
-
-
 def bucket_sort(lista):
     maximo = max(lista)
     num_baldes = maximo//5
@@ -26,14 +14,8 @@ def bucket_sort(lista):
 
     for balde in baldes:
         counting_sort(balde)
-    lista_ordenada = []
 
     return [i for j in baldes for i in j]
-
-    # for i in range(len(baldes)):
-    #     lista_ordenada.extend(baldes[i])
-    # return lista_ordenada
-
 
 
 def counting_sort(lista):
@@ -64,10 +46,8 @@ times = []
 for i in range(len(tam)):
     lista_aleatoria = list(range(1, tam[i] + 1))
     random.shuffle(lista_aleatoria)
-    lista_aleatoria = bucket_sort(lista_aleatoria)
-    print(lista_aleatoria)
-    #times.append(timeit.timeit("counting_sort({})".format(lista_aleatoria),
-                               #setup="from __main__ import counting_sort", number=1))
+    times.append(timeit.timeit("bucket_sort({})".format(lista_aleatoria),
+                               setup="from __main__ import counting_sort, bucket_sort", number=1))
 
 
-#desenha_grafico(tam, times, "GraficoTempo.png", "Tempo gasto pelo counting_sort", xl="Tamanho da lista", yl="Tempo")
+desenha_grafico(tam, times, "GraficoTempo.png", "Tempo gasto pelo bucket_sort", xl="Tamanho da lista", yl="Tempo")
