@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 def bucket_sort(lista):
     maximo = max(lista)
-    num_baldes = maximo//5
+    num_baldes = maximo//10
     baldes = [ [] for i in range(num_baldes)]
     for i in lista:
         for j in range(num_baldes-1, -1, -1):
-            if i >= j*5:
+            if i >= j*10:
                 baldes[j].append(i)
                 break
 
@@ -41,7 +41,7 @@ def desenha_grafico(x, y, file_name, label1, xl="Entradas", yl="Saídas"):
     fig.savefig(file_name)
 
 
-tam = [100000, 200000, 400000, 500000, 1000000, 2000000]
+tam = [10000, 20000, 50000, 100000, 200000]
 times = []
 for i in range(len(tam)):
     lista_aleatoria = list(range(1, tam[i] + 1))
