@@ -4,17 +4,17 @@ import matplotlib.pyplot as plt
 
 def forma_estrutura_heap(lista, final, raiz):
   maior = raiz
-  direita = raiz * 2 + 1
-  esquerda = raiz * 2 + 2
+  direita = raiz * 2 + 2
+  esquerda = raiz * 2 + 1
   
   if esquerda < final and lista[esquerda] > lista[raiz]:
     maior = esquerda
     
-  if direita < final and lista[direita] > lista[raiz]:
+  if direita < final and lista[direita] > lista[maior]:
     maior = direita
     
   if maior != raiz:
-    lista[maior], lista[raiz] =  lista[raiz], lista[maior]
+    lista[maior], lista[raiz] = lista[raiz], lista[maior]
     
     forma_estrutura_heap(lista, final, maior)
     
@@ -28,7 +28,6 @@ def heap_sort(lista):
   for i in range(tam-1, 0, -1):
     lista[i], lista[0] = lista[0], lista[i]
     forma_estrutura_heap(lista, i, 0)
-    
 
 
 def desenha_grafico(x, y, file_name, label1, xl="Entradas", yl="Saídas"):
@@ -41,13 +40,11 @@ def desenha_grafico(x, y, file_name, label1, xl="Entradas", yl="Saídas"):
     fig.savefig(file_name)
 
 
-tam = [100, 200, 500, 1000, 2000]
+tam = [100000, 200000, 500000, 1000000, 2000000]
 times = []
 for i in range(len(tam)):
     lista_aleatoria = list(range(1, tam[i] + 1))
     random.shuffle(lista_aleatoria)
-    heap_sort(lista_aleatoria)
-    print(lista_aleatoria)
     times.append(timeit.timeit("heap_sort({})".format(lista_aleatoria),
                                setup="from __main__ import heap_sort, forma_estrutura_heap", number=1))
 
