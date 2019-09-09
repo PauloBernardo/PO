@@ -8,7 +8,7 @@ def gnome_sort(lista):
     index = 0
     while index < tam:
         if index == 0:
-            index = index + 1
+            index = 1
         if lista[index] >= lista[index - 1]:
             index = index + 1
         else:
@@ -33,6 +33,7 @@ for i in range(len(tam)):
     random.shuffle(lista_aleatoria)
     times.append(timeit.timeit("gnome_sort({})".format(lista_aleatoria),
                                setup="from __main__ import gnome_sort", number=1))
+    print(i+1)
 
 
 desenha_grafico(tam, times, "GraficoTempo.png", "Tempo gasto pelo gnome_sort", xl="Tamanho da lista", yl="Tempo")
